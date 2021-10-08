@@ -12,8 +12,3 @@ GET http://localhost:8801/get/1
 
 ### Delete client with id 1
 GET http://localhost:8801/delete/1
-
-
-
-
-

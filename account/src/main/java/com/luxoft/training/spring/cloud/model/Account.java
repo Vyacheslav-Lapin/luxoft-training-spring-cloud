@@ -3,6 +3,7 @@ package com.luxoft.training.spring.cloud.model;
 import static lombok.AccessLevel.PRIVATE;
 import static lombok.AccessLevel.PROTECTED;
 
+import java.math.BigDecimal;
 import java.util.Objects;
 import java.util.UUID;
 import javax.persistence.Column;
@@ -29,7 +30,7 @@ import org.hibernate.Hibernate;
 @RequiredArgsConstructor
 @AllArgsConstructor(access = PRIVATE)
 @NoArgsConstructor(access = PROTECTED)
-public class Client {
+public class Account {
 
   //region id and version
   @Id
@@ -44,15 +45,19 @@ public class Client {
 
   @NonNull
   @Column(nullable = false)
-  String name;
+  Integer clientId;
+
+  @NonNull
+  @Column(nullable = false)
+  BigDecimal balance;
 
   //region equals and hashCode
   @Override
   public boolean equals(Object o) {
-    if (this == o) return true;
-    if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
-    Client client = (Client) o;
-    return id != null && Objects.equals(id, client.id);
+    return this == o || o != null
+                            && Hibernate.getClass(this) == Hibernate.getClass(o)
+                            && id != null
+                            && Objects.equals(id, ((Account) o).id);
   }
 
   @Override
